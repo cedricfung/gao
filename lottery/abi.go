@@ -1,7 +1,7 @@
 // Code generated - DO NOT EDIT.
 // This file is a generated binding and any manual changes will be lost.
 
-package main
+package lottery
 
 import (
 	"errors"
@@ -30,7 +30,7 @@ var (
 
 // MixinProcessMetaData contains all meta data concerning the MixinProcess contract.
 var MixinProcessMetaData = &bind.MetaData{
-	ABI: "[{\"type\":\"event\",\"name\":\"MixinEvent\",\"inputs\":[{\"type\":\"bytes\",\"name\":\"\",\"internalType\":\"bytes\",\"indexed\":false}],\"anonymous\":false},{\"type\":\"event\",\"name\":\"MixinTransaction\",\"inputs\":[{\"type\":\"bytes\",\"name\":\"\",\"internalType\":\"bytes\",\"indexed\":false}],\"anonymous\":false},{\"type\":\"function\",\"stateMutability\":\"view\",\"outputs\":[{\"type\":\"uint256\",\"name\":\"\",\"internalType\":\"uint256\"}],\"name\":\"AMOUNT\",\"inputs\":[]},{\"type\":\"function\",\"stateMutability\":\"view\",\"outputs\":[{\"type\":\"uint128\",\"name\":\"\",\"internalType\":\"uint128\"}],\"name\":\"ASSET\",\"inputs\":[]},{\"type\":\"function\",\"stateMutability\":\"view\",\"outputs\":[{\"type\":\"address\",\"name\":\"\",\"internalType\":\"address\"}],\"name\":\"BIDDER\",\"inputs\":[]},{\"type\":\"function\",\"stateMutability\":\"view\",\"outputs\":[{\"type\":\"bool\",\"name\":\"\",\"internalType\":\"bool\"}],\"name\":\"END\",\"inputs\":[]},{\"type\":\"function\",\"stateMutability\":\"view\",\"outputs\":[{\"type\":\"uint64\",\"name\":\"\",\"internalType\":\"uint64\"}],\"name\":\"GRACE\",\"inputs\":[]},{\"type\":\"function\",\"stateMutability\":\"view\",\"outputs\":[{\"type\":\"uint64\",\"name\":\"\",\"internalType\":\"uint64\"}],\"name\":\"NONCE\",\"inputs\":[]},{\"type\":\"function\",\"stateMutability\":\"view\",\"outputs\":[{\"type\":\"uint128\",\"name\":\"\",\"internalType\":\"uint128\"}],\"name\":\"PID\",\"inputs\":[]},{\"type\":\"function\",\"stateMutability\":\"view\",\"outputs\":[{\"type\":\"uint64\",\"name\":\"\",\"internalType\":\"uint64\"}],\"name\":\"TIMESTAMP\",\"inputs\":[]},{\"type\":\"function\",\"stateMutability\":\"view\",\"outputs\":[{\"type\":\"uint256\",\"name\":\"\",\"internalType\":\"uint256\"}],\"name\":\"custodian\",\"inputs\":[{\"type\":\"uint128\",\"name\":\"\",\"internalType\":\"uint128\"}]},{\"type\":\"function\",\"stateMutability\":\"view\",\"outputs\":[{\"type\":\"bytes\",\"name\":\"\",\"internalType\":\"bytes\"}],\"name\":\"members\",\"inputs\":[{\"type\":\"address\",\"name\":\"\",\"internalType\":\"address\"}]},{\"type\":\"function\",\"stateMutability\":\"nonpayable\",\"outputs\":[{\"type\":\"bool\",\"name\":\"\",\"internalType\":\"bool\"}],\"name\":\"mixin\",\"inputs\":[{\"type\":\"bytes\",\"name\":\"raw\",\"internalType\":\"bytes\"}]}]",
+	ABI: "[{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"sender\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"nonce\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint128\",\"name\":\"asset\",\"type\":\"uint128\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint64\",\"name\":\"timestamp\",\"type\":\"uint64\"},{\"indexed\":false,\"internalType\":\"bytes\",\"name\":\"extra\",\"type\":\"bytes\"}],\"name\":\"MixinEvent\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"bytes\",\"name\":\"\",\"type\":\"bytes\"}],\"name\":\"MixinTransaction\",\"type\":\"event\"},{\"inputs\":[],\"name\":\"AMOUNT\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"ASSET\",\"outputs\":[{\"internalType\":\"uint128\",\"name\":\"\",\"type\":\"uint128\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"GRACE\",\"outputs\":[{\"internalType\":\"uint64\",\"name\":\"\",\"type\":\"uint64\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"GROUP\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"NONCE\",\"outputs\":[{\"internalType\":\"uint64\",\"name\":\"\",\"type\":\"uint64\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"PID\",\"outputs\":[{\"internalType\":\"uint128\",\"name\":\"\",\"type\":\"uint128\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"TIMESTAMP\",\"outputs\":[{\"internalType\":\"uint64\",\"name\":\"\",\"type\":\"uint64\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint128\",\"name\":\"\",\"type\":\"uint128\"}],\"name\":\"custodian\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"name\":\"members\",\"outputs\":[{\"internalType\":\"bytes\",\"name\":\"\",\"type\":\"bytes\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes\",\"name\":\"raw\",\"type\":\"bytes\"}],\"name\":\"mixin\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"stats\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"}]",
 }
 
 // MixinProcessABI is the input ABI used to generate the binding from.
@@ -241,68 +241,6 @@ func (_MixinProcess *MixinProcessCallerSession) ASSET() (*big.Int, error) {
 	return _MixinProcess.Contract.ASSET(&_MixinProcess.CallOpts)
 }
 
-// BIDDER is a free data retrieval call binding the contract method 0x7a45bcc4.
-//
-// Solidity: function BIDDER() view returns(address)
-func (_MixinProcess *MixinProcessCaller) BIDDER(opts *bind.CallOpts) (common.Address, error) {
-	var out []interface{}
-	err := _MixinProcess.contract.Call(opts, &out, "BIDDER")
-
-	if err != nil {
-		return *new(common.Address), err
-	}
-
-	out0 := *abi.ConvertType(out[0], new(common.Address)).(*common.Address)
-
-	return out0, err
-
-}
-
-// BIDDER is a free data retrieval call binding the contract method 0x7a45bcc4.
-//
-// Solidity: function BIDDER() view returns(address)
-func (_MixinProcess *MixinProcessSession) BIDDER() (common.Address, error) {
-	return _MixinProcess.Contract.BIDDER(&_MixinProcess.CallOpts)
-}
-
-// BIDDER is a free data retrieval call binding the contract method 0x7a45bcc4.
-//
-// Solidity: function BIDDER() view returns(address)
-func (_MixinProcess *MixinProcessCallerSession) BIDDER() (common.Address, error) {
-	return _MixinProcess.Contract.BIDDER(&_MixinProcess.CallOpts)
-}
-
-// END is a free data retrieval call binding the contract method 0xefe7a504.
-//
-// Solidity: function END() view returns(bool)
-func (_MixinProcess *MixinProcessCaller) END(opts *bind.CallOpts) (bool, error) {
-	var out []interface{}
-	err := _MixinProcess.contract.Call(opts, &out, "END")
-
-	if err != nil {
-		return *new(bool), err
-	}
-
-	out0 := *abi.ConvertType(out[0], new(bool)).(*bool)
-
-	return out0, err
-
-}
-
-// END is a free data retrieval call binding the contract method 0xefe7a504.
-//
-// Solidity: function END() view returns(bool)
-func (_MixinProcess *MixinProcessSession) END() (bool, error) {
-	return _MixinProcess.Contract.END(&_MixinProcess.CallOpts)
-}
-
-// END is a free data retrieval call binding the contract method 0xefe7a504.
-//
-// Solidity: function END() view returns(bool)
-func (_MixinProcess *MixinProcessCallerSession) END() (bool, error) {
-	return _MixinProcess.Contract.END(&_MixinProcess.CallOpts)
-}
-
 // GRACE is a free data retrieval call binding the contract method 0x137d29d9.
 //
 // Solidity: function GRACE() view returns(uint64)
@@ -332,6 +270,37 @@ func (_MixinProcess *MixinProcessSession) GRACE() (uint64, error) {
 // Solidity: function GRACE() view returns(uint64)
 func (_MixinProcess *MixinProcessCallerSession) GRACE() (uint64, error) {
 	return _MixinProcess.Contract.GRACE(&_MixinProcess.CallOpts)
+}
+
+// GROUP is a free data retrieval call binding the contract method 0x81ebf1c3.
+//
+// Solidity: function GROUP(uint256 ) view returns(uint256)
+func (_MixinProcess *MixinProcessCaller) GROUP(opts *bind.CallOpts, arg0 *big.Int) (*big.Int, error) {
+	var out []interface{}
+	err := _MixinProcess.contract.Call(opts, &out, "GROUP", arg0)
+
+	if err != nil {
+		return *new(*big.Int), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(*big.Int)).(**big.Int)
+
+	return out0, err
+
+}
+
+// GROUP is a free data retrieval call binding the contract method 0x81ebf1c3.
+//
+// Solidity: function GROUP(uint256 ) view returns(uint256)
+func (_MixinProcess *MixinProcessSession) GROUP(arg0 *big.Int) (*big.Int, error) {
+	return _MixinProcess.Contract.GROUP(&_MixinProcess.CallOpts, arg0)
+}
+
+// GROUP is a free data retrieval call binding the contract method 0x81ebf1c3.
+//
+// Solidity: function GROUP(uint256 ) view returns(uint256)
+func (_MixinProcess *MixinProcessCallerSession) GROUP(arg0 *big.Int) (*big.Int, error) {
+	return _MixinProcess.Contract.GROUP(&_MixinProcess.CallOpts, arg0)
 }
 
 // NONCE is a free data retrieval call binding the contract method 0xe091dd1a.
@@ -489,6 +458,37 @@ func (_MixinProcess *MixinProcessCallerSession) Members(arg0 common.Address) ([]
 	return _MixinProcess.Contract.Members(&_MixinProcess.CallOpts, arg0)
 }
 
+// Stats is a free data retrieval call binding the contract method 0xd80528ae.
+//
+// Solidity: function stats() view returns(uint256)
+func (_MixinProcess *MixinProcessCaller) Stats(opts *bind.CallOpts) (*big.Int, error) {
+	var out []interface{}
+	err := _MixinProcess.contract.Call(opts, &out, "stats")
+
+	if err != nil {
+		return *new(*big.Int), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(*big.Int)).(**big.Int)
+
+	return out0, err
+
+}
+
+// Stats is a free data retrieval call binding the contract method 0xd80528ae.
+//
+// Solidity: function stats() view returns(uint256)
+func (_MixinProcess *MixinProcessSession) Stats() (*big.Int, error) {
+	return _MixinProcess.Contract.Stats(&_MixinProcess.CallOpts)
+}
+
+// Stats is a free data retrieval call binding the contract method 0xd80528ae.
+//
+// Solidity: function stats() view returns(uint256)
+func (_MixinProcess *MixinProcessCallerSession) Stats() (*big.Int, error) {
+	return _MixinProcess.Contract.Stats(&_MixinProcess.CallOpts)
+}
+
 // Mixin is a paid mutator transaction binding the contract method 0x5cae8005.
 //
 // Solidity: function mixin(bytes raw) returns(bool)
@@ -579,28 +579,43 @@ func (it *MixinProcessMixinEventIterator) Close() error {
 
 // MixinProcessMixinEvent represents a MixinEvent event raised by the MixinProcess contract.
 type MixinProcessMixinEvent struct {
-	Arg0 []byte
-	Raw  types.Log // Blockchain specific contextual infos
+	Sender    common.Address
+	Nonce     *big.Int
+	Asset     *big.Int
+	Amount    *big.Int
+	Timestamp uint64
+	Extra     []byte
+	Raw       types.Log // Blockchain specific contextual infos
 }
 
-// FilterMixinEvent is a free log retrieval operation binding the contract event 0xd81b55010c63687df072fb24ad086c9e75c10adfe0526499b87c43ab75e25742.
+// FilterMixinEvent is a free log retrieval operation binding the contract event 0xed126a3daa455d580cce3268a123812d4eece1deca8bf9b0e6c72eb535e28cd0.
 //
-// Solidity: event MixinEvent(bytes arg0)
-func (_MixinProcess *MixinProcessFilterer) FilterMixinEvent(opts *bind.FilterOpts) (*MixinProcessMixinEventIterator, error) {
+// Solidity: event MixinEvent(address indexed sender, uint256 nonce, uint128 asset, uint256 amount, uint64 timestamp, bytes extra)
+func (_MixinProcess *MixinProcessFilterer) FilterMixinEvent(opts *bind.FilterOpts, sender []common.Address) (*MixinProcessMixinEventIterator, error) {
 
-	logs, sub, err := _MixinProcess.contract.FilterLogs(opts, "MixinEvent")
+	var senderRule []interface{}
+	for _, senderItem := range sender {
+		senderRule = append(senderRule, senderItem)
+	}
+
+	logs, sub, err := _MixinProcess.contract.FilterLogs(opts, "MixinEvent", senderRule)
 	if err != nil {
 		return nil, err
 	}
 	return &MixinProcessMixinEventIterator{contract: _MixinProcess.contract, event: "MixinEvent", logs: logs, sub: sub}, nil
 }
 
-// WatchMixinEvent is a free log subscription operation binding the contract event 0xd81b55010c63687df072fb24ad086c9e75c10adfe0526499b87c43ab75e25742.
+// WatchMixinEvent is a free log subscription operation binding the contract event 0xed126a3daa455d580cce3268a123812d4eece1deca8bf9b0e6c72eb535e28cd0.
 //
-// Solidity: event MixinEvent(bytes arg0)
-func (_MixinProcess *MixinProcessFilterer) WatchMixinEvent(opts *bind.WatchOpts, sink chan<- *MixinProcessMixinEvent) (event.Subscription, error) {
+// Solidity: event MixinEvent(address indexed sender, uint256 nonce, uint128 asset, uint256 amount, uint64 timestamp, bytes extra)
+func (_MixinProcess *MixinProcessFilterer) WatchMixinEvent(opts *bind.WatchOpts, sink chan<- *MixinProcessMixinEvent, sender []common.Address) (event.Subscription, error) {
 
-	logs, sub, err := _MixinProcess.contract.WatchLogs(opts, "MixinEvent")
+	var senderRule []interface{}
+	for _, senderItem := range sender {
+		senderRule = append(senderRule, senderItem)
+	}
+
+	logs, sub, err := _MixinProcess.contract.WatchLogs(opts, "MixinEvent", senderRule)
 	if err != nil {
 		return nil, err
 	}
@@ -632,9 +647,9 @@ func (_MixinProcess *MixinProcessFilterer) WatchMixinEvent(opts *bind.WatchOpts,
 	}), nil
 }
 
-// ParseMixinEvent is a log parse operation binding the contract event 0xd81b55010c63687df072fb24ad086c9e75c10adfe0526499b87c43ab75e25742.
+// ParseMixinEvent is a log parse operation binding the contract event 0xed126a3daa455d580cce3268a123812d4eece1deca8bf9b0e6c72eb535e28cd0.
 //
-// Solidity: event MixinEvent(bytes arg0)
+// Solidity: event MixinEvent(address indexed sender, uint256 nonce, uint128 asset, uint256 amount, uint64 timestamp, bytes extra)
 func (_MixinProcess *MixinProcessFilterer) ParseMixinEvent(log types.Log) (*MixinProcessMixinEvent, error) {
 	event := new(MixinProcessMixinEvent)
 	if err := _MixinProcess.contract.UnpackLog(event, "MixinEvent", log); err != nil {
