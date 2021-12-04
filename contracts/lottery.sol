@@ -21,7 +21,7 @@ contract MixinProcess {
 
   // PID is the app id in Mixin which the contract will process, e.g. c6d0c728-2624-429b-8e0d-d9d19b6592fa
   // The app id will add 0x as prefix and delete '-'
-  uint128 public constant PID = 0xdf25cc2e9b853523a11af42a7c8290ea;
+  uint128 public constant PID = 0xaa26639c756f358ca184651de77fbefd;
   uint64 public NONCE = 0;
   mapping(uint128 => uint256) public custodian;
   mapping(address => bytes) public members;
@@ -30,13 +30,13 @@ contract MixinProcess {
   uint256 public AMOUNT = 1000000;
   uint64 public TIMESTAMP = 0;
   uint64 public GRACE = 24 * 3600 * 1000000000;
-  mapping(address => uint256) round;
+  mapping(address => uint256) public ROUND;
   address[] participants;
 
   function stats() public view returns (uint256) {
     uint256 score = 0;
     for (uint i = 0; i < participants.length; i++) {
-      score = score + round[participants[i]];
+      score = score + ROUND[participants[i]];
     }
     return score;
   }
@@ -58,10 +58,10 @@ contract MixinProcess {
       TIMESTAMP = timestamp;
     }
 
-    if (round[sender] == 0) {
+    if (ROUND[sender] == 0) {
       participants.push(sender);
     }
-    round[sender] = round[sender] + amount / AMOUNT;
+    ROUND[sender] = ROUND[sender] + amount / AMOUNT;
     return true;
   }
 
@@ -75,11 +75,11 @@ contract MixinProcess {
     uint256 seq = 0;
     uint256 winner = rand % score;
     for (uint i = 0; i < participants.length; i++) {
-      if (winner >= seq && winner < seq + round[participants[i]]) {
+      if (winner >= seq && winner < seq + ROUND[participants[i]]) {
         winner = i;
         break;
       }
-      seq = seq + round[participants[i]];
+      seq = seq + ROUND[participants[i]];
     }
 
     uint256 amount = score * AMOUNT;
@@ -88,7 +88,7 @@ contract MixinProcess {
     emit MixinTransaction(log);
 
     for (uint i = 0; i < participants.length; i++) {
-      delete round[participants[i]];
+      delete ROUND[participants[i]];
     }
     delete participants;
     return true;
