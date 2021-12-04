@@ -21,7 +21,7 @@ contract MixinProcess {
 
   // PID is the app id in Mixin which the contract will process, e.g. c6d0c728-2624-429b-8e0d-d9d19b6592fa
   // The app id will add 0x as prefix and delete '-'
-  uint128 public constant PID = 0xc6d0c7282624429b8e0dd9d19b6592fa;
+  uint128 public constant PID = 0xdf25cc2e9b853523a11af42a7c8290ea;
   uint64 public NONCE = 0;
   mapping(uint128 => uint256) public custodian;
   mapping(address => bytes) public members;
@@ -55,6 +55,7 @@ contract MixinProcess {
     }
     if (TIMESTAMP + GRACE < timestamp) {
       finish(nonce, sig);
+      TIMESTAMP = timestamp;
     }
 
     if (round[sender] == 0) {
@@ -90,7 +91,6 @@ contract MixinProcess {
       delete round[participants[i]];
     }
     delete participants;
-    TIMESTAMP = 0;
     return true;
   }
 
