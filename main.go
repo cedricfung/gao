@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 
+	"github.com/MixinNetwork/mixin/logger"
 	"github.com/cedricfung/gao/lottery"
 	"github.com/ethereum/go-ethereum/ethclient"
 )
@@ -12,6 +13,7 @@ const (
 )
 
 func main() {
+	logger.SetLevel(logger.DEBUG)
 	conn, err := ethclient.Dial(GethRPC)
 	if err != nil {
 		panic(err)

@@ -11,6 +11,7 @@ import (
 	"github.com/MixinNetwork/mixin/logger"
 	"github.com/MixinNetwork/trusted-group/mvm/encoding"
 	"github.com/ethereum/go-ethereum/common"
+	"github.com/ethereum/go-ethereum/crypto"
 	"github.com/ethereum/go-ethereum/ethclient"
 	"github.com/fox-one/mixin-sdk-go"
 	"github.com/shopspring/decimal"
@@ -55,24 +56,29 @@ func NewWorker(ctx context.Context, conn *ethclient.Client) *Worker {
 func (rw *Worker) OnMessage(ctx context.Context, msg *mixin.MessageView, userId string) error {
 	pTimestamp, err := rw.proc.TIMESTAMP(nil)
 	if err != nil {
-		panic(err)
+		return err
 	}
 	timestamp := time.Unix(0, int64(pTimestamp))
-	if pTimestamp == 0 {
-		timestamp = time.Now()
-	}
 	duration := 24*time.Hour - time.Now().Sub(timestamp)
 	if duration < 0 {
 		duration = 0
 	}
 	pPool, err := rw.proc.Stats(nil)
 	if err != nil {
-		panic(err)
+		return err
 	}
 	pool := decimal.NewFromBigInt(pPool, 0).Mul(decimal.NewFromFloat(0.01))
-	guide := fmt.Sprintf("回复任意消息都可以再次收到本条状态消息。\n\n⚠️⚠️⚠️ \n注意该游戏处于完全早期测试目的，加注后无法退回。\n\n📗📗📗\n任何人都可以注入 XIN 到奖池，每次数量必须是 0.01XIN 的整数倍。每 24 小时开奖一次，按照参与倍数获得抽奖机会，抽中一人得到奖池内全部资金。\n\n💸💸💸\n总奖金池：%sXIN\n开奖时间：%s\n\n🤑🤑🤑\n回复任意整数获得相应倍数的付款链接。", pool, duration)
+	me, err := rw.proc.ROUND(nil, address(msg.UserID))
+	if err != nil {
+		return err
+	}
+	if !me.IsInt64() {
+		return err
+	}
 
-	data, _ := base64.RawStdEncoding.DecodeString(msg.Data)
+	guide := fmt.Sprintf("回复任意消息都可以再次收到本条状态消息。\n\n📗📗📗\n任何人都可以注入 XIN 到奖池，每次数量必须是 0.01XIN 的整数倍。每 24 小时开奖一次，按照参与倍数获得抽奖机会，抽中一人得到奖池内全部资金。\n\n💸💸💸\n总奖金池：%sXIN\n开奖时间：%s\n我的倍数：%d\n\n🤑🤑🤑\n回复任意整数获得相应倍数的付款链接。", pool, duration, me.Int64())
+
+	data, _ := base64.StdEncoding.DecodeString(msg.Data)
 	cmd, _ := decimal.NewFromString(strings.TrimSpace(string(data)))
 	if msg.Category == mixin.MessageCategoryPlainText && cmd.IntPart() > 0 {
 		op := &encoding.Operation{
@@ -95,7 +101,7 @@ func (rw *Worker) OnMessage(ctx context.Context, msg *mixin.MessageView, userId 
 		pr.OpponentMultisig.Threshold = 3
 		payment, err := rw.client.VerifyPayment(ctx, pr)
 		if err != nil {
-			panic(err)
+			return err
 		}
 		guide = fmt.Sprintf("注入 %sXIN\n\n🤑🤑🤑\nmixin://codes/%s", pr.Amount, payment.CodeID)
 	}
@@ -106,7 +112,11 @@ func (rw *Worker) OnMessage(ctx context.Context, msg *mixin.MessageView, userId 
 		MessageID:      mixin.UniqueConversationID(msg.MessageID, msg.MessageID),
 		Data:           base64.RawURLEncoding.EncodeToString([]byte(guide)),
 	}
-	return rw.client.SendMessage(ctx, mr)
+	err = rw.client.SendMessage(ctx, mr)
+	if mixin.IsErrorCodes(err, 403) {
+		return nil
+	}
+	return err
 }
 
 func (rw *Worker) OnAckReceipt(ctx context.Context, msg *mixin.MessageView, userId string) error {
@@ -120,6 +130,20 @@ func (rw *Worker) Loop(ctx context.Context) {
 		if ctx.Err() != nil {
 			break
 		}
-		time.Sleep(3 * time.Second)
+		time.Sleep(10 * time.Second)
 	}
+}
+
+func address(uid string) common.Address {
+	evt := encoding.Event{
+		Process:   uid,
+		Asset:     uid,
+		Members:   []string{uid},
+		Threshold: 1,
+	}
+	msg := evt.Encode()
+	msg = crypto.Keccak256(msg[52:72])
+	var address common.Address
+	copy(address[:], msg[12:])
+	return address
 }

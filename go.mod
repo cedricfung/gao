@@ -4,9 +4,9 @@ go 1.17
 
 require (
 	github.com/MixinNetwork/mixin v0.13.10-0.20211130090246-732558212cef
-	github.com/MixinNetwork/trusted-group/mvm v0.0.0-20211202111625-6cbb57b5896f
-	github.com/ethereum/go-ethereum v1.10.13
-	github.com/fox-one/mixin-sdk-go v1.5.5
+	github.com/MixinNetwork/trusted-group/mvm v0.0.0-20211222173258-2ef8a50d0967
+	github.com/ethereum/go-ethereum v1.10.14
+	github.com/fox-one/mixin-sdk-go v1.5.6
 	github.com/shopspring/decimal v1.3.1
 )
 
@@ -21,7 +21,7 @@ require (
 	github.com/deckarep/golang-set v0.0.0-20180603214616-504e848d77ea // indirect
 	github.com/fox-one/msgpack v1.0.0 // indirect
 	github.com/go-ole/go-ole v1.2.1 // indirect
-	github.com/go-resty/resty/v2 v2.6.0 // indirect
+	github.com/go-resty/resty/v2 v2.7.0 // indirect
 	github.com/go-stack/stack v1.8.0 // indirect
 	github.com/gofrs/uuid v4.2.0+incompatible // indirect
 	github.com/golang-jwt/jwt v3.2.2+incompatible // indirect
@@ -38,10 +38,10 @@ require (
 	github.com/tklauser/numcpus v0.2.2 // indirect
 	github.com/vmihailenco/msgpack/v4 v4.3.12 // indirect
 	github.com/vmihailenco/tagparser v0.1.2 // indirect
-	golang.org/x/crypto v0.0.0-20211108221036-ceb1ce70b4fa // indirect
-	golang.org/x/net v0.0.0-20210805182204-aaa1db679c0d // indirect
+	golang.org/x/crypto v0.0.0-20211202192323-5770296d904e // indirect
+	golang.org/x/net v0.0.0-20211112202133-69e39bad7dc2 // indirect
 	golang.org/x/sync v0.0.0-20210220032951-036812b2e83c // indirect
-	golang.org/x/sys v0.0.0-20210816183151-1e6c022a8912 // indirect
+	golang.org/x/sys v0.0.0-20211124211545-fe61309f8881 // indirect
 	golang.org/x/text v0.3.6 // indirect
 	google.golang.org/appengine v1.6.7 // indirect
 	google.golang.org/genproto v0.0.0-20200526211855-cb27e3aa2013 // indirect
